@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 350" width="1000" height="350">
+  <defs>
+    <linearGradient id="crystalAcetate" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85" />
+      <stop offset="30%" stop-color="#dbeafe" stop-opacity="0.45" />
+      <stop offset="70%" stop-color="#f8fafc" stop-opacity="0.65" />
+      <stop offset="100%" stop-color="#bfdbfe" stop-opacity="0.55" />
+    </linearGradient>
+    <linearGradient id="crystalLens" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f1f5f9" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#e2e8f0" stop-opacity="0.05" />
+    </linearGradient>
+    <filter id="crystalShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#000000" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <g filter="url(#crystalShadow)">
+    <!-- Bridge -->
+    <path d="M420 125 C 460 105, 540 105, 580 125 C 565 150, 535 160, 500 160 C 465 160, 435 150, 420 125 Z" fill="url(#crystalAcetate)" stroke="#cbd5e1" stroke-width="2" />
+
+    <!-- Left Frame Outer -->
+    <path d="M 60 110 
+             C 75 80, 170 70, 440 90 
+             C 455 110, 445 165, 425 245 
+             C 395 300, 230 310, 125 275 
+             C 75 245, 50 175, 60 110 Z" 
+          fill="url(#crystalAcetate)" stroke="#94a3b8" stroke-width="3" />
+    <!-- Left Lens -->
+    <path d="M 105 120 
+             C 145 100, 270 100, 400 115 
+             C 415 155, 395 225, 375 250 
+             C 335 280, 210 280, 155 250 
+             C 115 215, 95 165, 105 120 Z" 
+          fill="url(#crystalLens)" stroke="#cbd5e1" stroke-width="1.5" />
+
+    <!-- Right Frame Outer -->
+    <path d="M 940 110 
+             C 925 80, 830 70, 560 90 
+             C 545 110, 555 165, 575 245 
+             C 605 300, 770 310, 875 275 
+             C 925 245, 950 175, 940 110 Z" 
+          fill="url(#crystalAcetate)" stroke="#94a3b8" stroke-width="3" />
+    <!-- Right Lens -->
+    <path d="M 895 120 
+             C 855 100, 730 100, 600 115 
+             C 585 155, 605 225, 625 250 
+             C 665 280, 790 280, 845 250 
+             C 885 215, 905 165, 895 120 Z" 
+          fill="url(#crystalLens)" stroke="#cbd5e1" stroke-width="1.5" />
+  </g>
+</svg>

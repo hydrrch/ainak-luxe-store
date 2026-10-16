@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 360" width="1000" height="360">
+  <defs>
+    <linearGradient id="tortoise" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#451a03" />
+      <stop offset="30%" stop-color="#92400e" />
+      <stop offset="55%" stop-color="#d97706" />
+      <stop offset="75%" stop-color="#78350f" />
+      <stop offset="100%" stop-color="#291203" />
+    </linearGradient>
+    <linearGradient id="roseTint" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fda4af" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#f43f5e" stop-opacity="0.20" />
+    </linearGradient>
+    <filter id="catEyeShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="7" stdDeviation="5" flood-color="#000000" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <g filter="url(#catEyeShadow)">
+    <!-- Bridge -->
+    <path d="M 430 140 C 470 120, 530 120, 570 140 C 555 165, 530 170, 500 170 C 470 170, 445 165, 430 140 Z" fill="url(#tortoise)" />
+
+    <!-- Left Cat Eye -->
+    <path d="M 50 60 
+             C 120 50, 320 90, 440 110 
+             C 450 160, 420 250, 360 280 
+             C 280 320, 160 300, 110 240 
+             C 70 190, 30 100, 50 60 Z" 
+          fill="url(#tortoise)" stroke="#271003" stroke-width="4" />
+    <path d="M 100 95 C 160 85, 310 120, 395 130 C 410 180, 385 240, 340 260 C 275 290, 175 275, 140 230 C 110 190, 85 130, 100 95 Z" fill="url(#roseTint)" />
+
+    <!-- Right Cat Eye -->
+    <path d="M 950 60 
+             C 880 50, 680 90, 560 110 
+             C 550 160, 580 250, 640 280 
+             C 720 320, 840 300, 890 240 
+             C 930 190, 970 100, 950 60 Z" 
+          fill="url(#tortoise)" stroke="#271003" stroke-width="4" />
+    <path d="M 900 95 C 840 85, 690 120, 605 130 C 590 180, 615 240, 660 260 C 725 290, 825 275, 860 230 C 890 190, 915 130, 900 95 Z" fill="url(#roseTint)" />
+  </g>
+</svg>

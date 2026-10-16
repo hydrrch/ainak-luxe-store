@@ -1,0 +1,317 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  name         String
+  passwordHash String
+  phone        String?
+  role         String    @default("CUSTOMER") // CUSTOMER or ADMIN
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  addresses    Address[]
+  orders       Order[]
+  reviews      Review[]
+  wishlist     WishlistItem[]
+  cart         Cart?
+}
+
+model Address {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fullName      String
+  phone         String
+  streetAddress String
+  city          String
+  province      String
+  postalCode    String?
+  isDefault     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+}
+
+model Category {
+  id          String     @id @default(cuid())
+  name        String
+  slug        String     @unique
+  description String?
+  image       String?
+  parentId    String?
+  parent      Category?  @relation("SubCategories", fields: [parentId], references: [id])
+  children    Category[] @relation("SubCategories")
+  products    Product[]
+  createdAt   DateTime   @default(now())
+}
+
+model Brand {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  logo        String?
+  description String?
+  products    Product[]
+  createdAt   DateTime  @default(now())
+}
+
+model Product {
+  id                   String            @id @default(cuid())
+  name                 String
+  slug                 String            @unique
+  sku                  String            @unique
+  description          String
+  brandId              String
+  brand                Brand             @relation(fields: [brandId], references: [id])
+  categoryId           String
+  category             Category          @relation(fields: [categoryId], references: [id])
+  gender               String            @default("UNISEX") // MEN, WOMEN, UNISEX, KIDS
+  basePrice            Float
+  salePrice            Float?
+  isBestseller         Boolean           @default(false)
+  isNewArrival         Boolean           @default(false)
+  isFeatured           Boolean           @default(false)
+  inStock              Boolean           @default(true)
+  stockCount           Int               @default(10)
+  
+  // Optical specs
+  frameShape           String            @default("WAYFARER") // WAYFARER, AVIATOR, ROUND, SQUARE, CAT_EYE, OVAL, RECTANGLE, CLUBMASTER, HEXAGONAL
+  material             String            @default("ACETATE") // ACETATE, METAL, TITANIUM, PLASTIC, TR90, MIX_MATERIAL
+  rimType              String            @default("FULL_RIM") // FULL_RIM, HALF_RIM, RIMLESS
+  frameSize            String            @default("MEDIUM") // SMALL, MEDIUM, LARGE
+  faceFit              String?           @default("For normal faces")
+  lensWidth            Int?              @default(50)
+  bridgeWidth          Int?              @default(20)
+  templeLength         Int?              @default(145)
+  lensHeight           Int?              @default(44)
+  totalWidth           Int?              @default(140)
+
+  // Virtual Try-On configuration
+  virtualTryOnOverlay  String?
+  tryOnScale           Float             @default(1.0)
+  tryOnOffsetY         Float             @default(0.0)
+  tryOnOffsetX         Float             @default(0.0)
+
+  createdAt            DateTime          @default(now())
+  updatedAt            DateTime          @updatedAt
+
+  images               ProductImage[]
+  variants             ProductVariant[]
+  reviews              Review[]
+  orderItems           OrderItem[]
+  cartItems            CartItem[]
+  wishlistItems        WishlistItem[]
+
+  @@index([brandId])
+  @@index([categoryId])
+  @@index([basePrice])
+  @@index([gender])
+  @@index([frameShape])
+  @@index([material])
+  @@index([frameSize])
+}
+
+model ProductImage {
+  id        String   @id @default(cuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url       String
+  alt       String?
+  sortOrder Int      @default(0)
+  isPrimary Boolean  @default(false)
+}
+
+model ProductVariant {
+  id           String      @id @default(cuid())
+  productId    String
+  product      Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  colorName    String
+  colorCode    String?     // HEX code e.g. #000000
+  sku          String      @unique
+  stockCount   Int         @default(10)
+  image        String?
+  tryOnOverlay String?
+  cartItems    CartItem[]
+  orderItems   OrderItem[]
+}
+
+model LensOption {
+  id          String      @id @default(cuid())
+  name        String
+  description String?
+  price       Float       @default(0)
+  type        String      // SINGLE_VISION, BLUE_LIGHT, ANTI_GLARE, PHOTOCHROMIC, BIFOCAL, PROGRESSIVE
+  features    String?     // Comma-separated or JSON list of features
+  isActive    Boolean     @default(true)
+  cartItems   CartItem[]
+  orderItems  OrderItem[]
+}
+
+model Cart {
+  id           String     @id @default(cuid())
+  userId       String?    @unique
+  user         User?      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sessionToken String?    @unique
+  items        CartItem[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model CartItem {
+  id                   String          @id @default(cuid())
+  cartId               String
+  cart                 Cart            @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  productId            String
+  product              Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+  variantId            String?
+  variant              ProductVariant? @relation(fields: [variantId], references: [id])
+  lensOptionId         String?
+  lensOption           LensOption?     @relation(fields: [lensOptionId], references: [id])
+  quantity             Int             @default(1)
+  
+  // Custom prescription fields
+  prescriptionMethod   String?         // IMAGE_UPLOAD, MANUAL, WHATSAPP_LATER, ZERO_POWER
+  prescriptionImage    String?         // Uploaded doctor's prescription slip image URL
+  prescriptionType     String?         // FRAME_ONLY, DISTANCE, READING, BIFOCAL, PROGRESSIVE
+  sphereOD             String?
+  cylinderOD           String?
+  axisOD               String?
+  additionOD           String?
+  sphereOS             String?
+  cylinderOS           String?
+  axisOS               String?
+  additionOS           String?
+  pupillaryDistance    String?
+
+  createdAt            DateTime        @default(now())
+  updatedAt            DateTime        @updatedAt
+}
+
+model WishlistItem {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, productId])
+}
+
+model Order {
+  id              String        @id @default(cuid())
+  orderNumber     String        @unique
+  userId          String?
+  user            User?         @relation(fields: [userId], references: [id])
+  
+  // Customer & Shipping Info
+  customerName    String
+  customerEmail   String
+  customerPhone   String
+  shippingAddress String        // JSON string with full address details
+  city            String
+  province        String
+  postalCode      String?
+  
+  // Financials
+  subtotal        Float
+  discount        Float         @default(0)
+  shippingFee     Float         @default(0)
+  total           Float
+  couponCode      String?
+  
+  // Payment & Status
+  paymentMethod   String        @default("COD") // COD, BANK_TRANSFER, JAZZCASH, EASYPAISA, STRIPE
+  paymentStatus   String        @default("PENDING") // PENDING, PAID, FAILED
+  orderStatus     String        @default("PENDING") // PENDING, CONFIRMED, PROCESSING, SHIPPED, DELIVERED, CANCELLED
+  trackingNumber  String?
+  notes           String?
+
+  items           OrderItem[]
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([customerEmail])
+  @@index([customerPhone])
+  @@index([orderStatus])
+  @@index([paymentStatus])
+}
+
+model OrderItem {
+  id                  String          @id @default(cuid())
+  orderId             String
+  order               Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId           String
+  product             Product         @relation(fields: [productId], references: [id])
+  variantId           String?
+  variant             ProductVariant? @relation(fields: [variantId], references: [id])
+  lensOptionId        String?
+  lensOption          LensOption?     @relation(fields: [lensOptionId], references: [id])
+  
+  productName         String
+  variantName         String?
+  lensName            String?
+  unitPrice           Float
+  quantity            Int
+  subtotal            Float
+  prescriptionDetails String?         // JSON string with prescription data
+  prescriptionImage   String?         // Uploaded doctor's prescription slip image URL
+}
+
+model Coupon {
+  id             String       @id @default(cuid())
+  code           String       @unique
+  discountType   String       @default("PERCENTAGE") // PERCENTAGE or FIXED
+  discountValue  Float
+  minOrderAmount Float        @default(0)
+  maxUses        Int?
+  usedCount      Int          @default(0)
+  validUntil     DateTime?
+  isActive       Boolean      @default(true)
+  createdAt      DateTime     @default(now())
+}
+
+model Review {
+  id                 String   @id @default(cuid())
+  productId          String
+  product            Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  userId             String?
+  user               User?    @relation(fields: [userId], references: [id])
+  authorName         String
+  authorEmail        String?
+  rating             Int      @default(5)
+  title              String?
+  comment            String
+  isVerifiedPurchase Boolean  @default(false)
+  isApproved         Boolean  @default(true)
+  photos             String?  // JSON string array of review photos
+  createdAt          DateTime @default(now())
+
+  @@index([productId])
+}
+
+model Banner {
+  id             String   @id @default(cuid())
+  title          String
+  subtitle       String?
+  linkUrl        String?
+  imageUrl       String
+  mobileImageUrl String?
+  position       String   @default("HERO") // HERO, PROMO, TOP_BAR
+  sortOrder      Int      @default(0)
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+}
+
+model StoreSetting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+}

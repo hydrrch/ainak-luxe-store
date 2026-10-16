@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 360" width="1000" height="360">
+  <defs>
+    <linearGradient id="silverMetal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="35%" stop-color="#cccccc" />
+      <stop offset="70%" stop-color="#999999" />
+      <stop offset="100%" stop-color="#555555" />
+    </linearGradient>
+    <linearGradient id="clearOptic" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0f2fe" stop-opacity="0.30" />
+      <stop offset="50%" stop-color="#bae6fd" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#7dd3fc" stop-opacity="0.25" />
+    </linearGradient>
+    <linearGradient id="antiBlueSheen" x1="0%" y1="0%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.4" />
+      <stop offset="50%" stop-color="#818cf8" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#c084fc" stop-opacity="0.0" />
+    </linearGradient>
+  </defs>
+
+  <g>
+    <!-- Bridge -->
+    <path d="M 430 150 Q 500 120 570 150" fill="none" stroke="url(#silverMetal)" stroke-width="8" stroke-linecap="round" />
+
+    <!-- Left Circle Frame -->
+    <circle cx="280" cy="180" r="140" fill="url(#clearOptic)" stroke="url(#silverMetal)" stroke-width="8" />
+    <path d="M 190 110 A 140 140 0 0 1 370 110 Q 280 150 190 110 Z" fill="url(#antiBlueSheen)" />
+
+    <!-- Right Circle Frame -->
+    <circle cx="720" cy="180" r="140" fill="url(#clearOptic)" stroke="url(#silverMetal)" stroke-width="8" />
+    <path d="M 630 110 A 140 140 0 0 1 810 110 Q 720 150 630 110 Z" fill="url(#antiBlueSheen)" />
+
+    <!-- Temples -->
+    <line x1="30" y1="165" x2="140" y2="165" stroke="url(#silverMetal)" stroke-width="7" stroke-linecap="round" />
+    <line x1="860" y1="165" x2="970" y2="165" stroke="url(#silverMetal)" stroke-width="7" stroke-linecap="round" />
+  </g>
+</svg>

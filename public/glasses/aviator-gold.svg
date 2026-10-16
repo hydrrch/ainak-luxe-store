@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 360" width="1000" height="360">
+  <defs>
+    <!-- Aviator Gold metallic gradient and teardrop lens -->
+    <linearGradient id="goldMetal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff2a3" />
+      <stop offset="25%" stop-color="#d4af37" />
+      <stop offset="50%" stop-color="#aa8012" />
+      <stop offset="75%" stop-color="#e5c158" />
+      <stop offset="100%" stop-color="#996515" />
+    </linearGradient>
+    <linearGradient id="aviatorLens" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3b3127" stop-opacity="0.70" />
+      <stop offset="60%" stop-color="#2a2016" stop-opacity="0.55" />
+      <stop offset="100%" stop-color="#735032" stop-opacity="0.35" />
+    </linearGradient>
+    <linearGradient id="aviatorHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.4" />
+      <stop offset="40%" stop-color="#ffffff" stop-opacity="0.05" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+    <filter id="aviatorShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="7" stdDeviation="5" flood-color="#000000" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <g filter="url(#aviatorShadow)">
+    <!-- Top Brow Bar (Iconic Aviator Double Bridge) -->
+    <path d="M 230 65 Q 500 45 770 65" fill="none" stroke="url(#goldMetal)" stroke-width="9" stroke-linecap="round" />
+    <!-- Lower Bridge -->
+    <path d="M 440 120 Q 500 105 560 120" fill="none" stroke="url(#goldMetal)" stroke-width="8" stroke-linecap="round" />
+
+    <!-- Left Teardrop Outer Rim -->
+    <path d="M 450 115 
+             C 420 70, 240 65, 120 100 
+             C 40 130, 45 220, 105 285 
+             C 180 355, 340 335, 410 260 
+             C 455 210, 465 145, 450 115 Z" 
+          fill="url(#aviatorLens)" stroke="url(#goldMetal)" stroke-width="9" />
+    <!-- Left Highlight -->
+    <path d="M 125 110 C 190 90, 310 90, 390 120 C 330 180, 220 220, 140 190 Z" fill="url(#aviatorHighlight)" />
+
+    <!-- Right Teardrop Outer Rim -->
+    <path d="M 550 115 
+             C 580 70, 760 65, 880 100 
+             C 960 130, 955 220, 895 285 
+             C 820 355, 660 335, 590 260 
+             C 545 210, 535 145, 550 115 Z" 
+          fill="url(#aviatorLens)" stroke="url(#goldMetal)" stroke-width="9" />
+    <!-- Right Highlight -->
+    <path d="M 875 110 C 810 90, 690 90, 610 120 C 670 180, 780 220, 860 190 Z" fill="url(#aviatorHighlight)" />
+
+    <!-- Temples / Hinges -->
+    <line x1="20" y1="125" x2="60" y2="125" stroke="url(#goldMetal)" stroke-width="7" stroke-linecap="round" />
+    <line x1="940" y1="125" x2="980" y2="125" stroke="url(#goldMetal)" stroke-width="7" stroke-linecap="round" />
+  </g>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 350" width="1000" height="350">
+  <defs>
+    <linearGradient id="blackBrow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#262626" />
+      <stop offset="100%" stop-color="#0a0a0a" />
+    </linearGradient>
+    <linearGradient id="goldRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd700" />
+      <stop offset="50%" stop-color="#b8860b" />
+      <stop offset="100%" stop-color="#daa520" />
+    </linearGradient>
+  </defs>
+
+  <g>
+    <!-- Gold Bridge -->
+    <path d="M 430 135 Q 500 110 570 135" fill="none" stroke="url(#goldRim)" stroke-width="8" stroke-linecap="round" />
+
+    <!-- Left Browline (Bold Acetate) -->
+    <path d="M 60 100 C 100 70, 260 65, 435 90 C 445 125, 430 160, 410 160 C 260 145, 120 150, 75 140 Z" fill="url(#blackBrow)" />
+    <!-- Left Wire Rim Under -->
+    <path d="M 75 140 C 90 260, 250 280, 360 260 C 400 240, 415 190, 410 160" fill="none" stroke="url(#goldRim)" stroke-width="6" />
+
+    <!-- Right Browline (Bold Acetate) -->
+    <path d="M 940 100 C 900 70, 740 65, 565 90 C 555 125, 570 160, 590 160 C 740 145, 880 150, 925 140 Z" fill="url(#blackBrow)" />
+    <!-- Right Wire Rim Under -->
+    <path d="M 925 140 C 910 260, 750 280, 640 260 C 600 240, 585 190, 590 160" fill="none" stroke="url(#goldRim)" stroke-width="6" />
+  </g>
+</svg>

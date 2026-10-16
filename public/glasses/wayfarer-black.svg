@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 350" width="1000" height="350">
+  <defs>
+    <!-- Wayfarer Black Classic with tinted acetate gradients and lens reflection -->
+    <linearGradient id="blackAcetate" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a2a2a" />
+      <stop offset="35%" stop-color="#111111" />
+      <stop offset="70%" stop-color="#1a1a1a" />
+      <stop offset="100%" stop-color="#0a0a0a" />
+    </linearGradient>
+    <linearGradient id="lensTint" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#15261b" stop-opacity="0.65" />
+      <stop offset="60%" stop-color="#0b1710" stop-opacity="0.80" />
+      <stop offset="100%" stop-color="#050a07" stop-opacity="0.90" />
+    </linearGradient>
+    <linearGradient id="lensSheen" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35" />
+      <stop offset="30%" stop-color="#ffffff" stop-opacity="0.05" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.0" />
+    </linearGradient>
+    <linearGradient id="silverPin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="50%" stop-color="#cccccc" />
+      <stop offset="100%" stop-color="#777777" />
+    </linearGradient>
+    <filter id="subtleDrop" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <g filter="url(#subtleDrop)">
+    <!-- Bridge -->
+    <path d="M420 120 C 460 100, 540 100, 580 120 C 565 145, 535 155, 500 155 C 465 155, 435 145, 420 120 Z" fill="url(#blackAcetate)" />
+
+    <!-- Left Frame Outer -->
+    <path d="M 60 105 
+             C 75 75, 170 65, 440 85 
+             C 455 105, 445 160, 425 240 
+             C 395 295, 230 305, 125 270 
+             C 75 240, 50 170, 60 105 Z" 
+          fill="url(#blackAcetate)" stroke="#111" stroke-width="4" />
+
+    <!-- Left Lens -->
+    <path d="M 105 115 
+             C 145 95, 270 95, 400 110 
+             C 415 150, 395 220, 375 245 
+             C 335 275, 210 275, 155 245 
+             C 115 210, 95 160, 105 115 Z" 
+          fill="url(#lensTint)" />
+    <!-- Left Lens Highlight -->
+    <path d="M 120 125 C 160 110, 240 110, 310 120 C 270 170, 180 200, 130 180 Z" fill="url(#lensSheen)" />
+
+    <!-- Right Frame Outer -->
+    <path d="M 940 105 
+             C 925 75, 830 65, 560 85 
+             C 545 105, 555 160, 575 240 
+             C 605 295, 770 305, 875 270 
+             C 925 240, 950 170, 940 105 Z" 
+          fill="url(#blackAcetate)" stroke="#111" stroke-width="4" />
+
+    <!-- Right Lens -->
+    <path d="M 895 115 
+             C 855 95, 730 95, 600 110 
+             C 585 150, 605 220, 625 245 
+             C 665 275, 790 275, 845 245 
+             C 885 210, 905 160, 895 115 Z" 
+          fill="url(#lensTint)" />
+    <!-- Right Lens Highlight -->
+    <path d="M 880 125 C 840 110, 760 110, 690 120 C 730 170, 820 200, 870 180 Z" fill="url(#lensSheen)" />
+
+    <!-- Left Temple Hinge & Silver Stud -->
+    <path d="M 30 115 L 65 110 L 65 135 L 30 130 Z" fill="url(#blackAcetate)" />
+    <ellipse cx="75" cy="115" rx="10" ry="4" fill="url(#silverPin)" transform="rotate(-15 75 115)" />
+
+    <!-- Right Temple Hinge & Silver Stud -->
+    <path d="M 970 115 L 935 110 L 935 135 L 970 130 Z" fill="url(#blackAcetate)" />
+    <ellipse cx="925" cy="115" rx="10" ry="4" fill="url(#silverPin)" transform="rotate(15 925 115)" />
+  </g>
+</svg>
