@@ -39,3 +39,6 @@ next-env.d.ts
 # SQLite Database (for cloud deployments, use cloud Postgres like Neon/Supabase)
 # prisma/dev.db
 # prisma/dev.db-journal
+
+# Local tunneling tools
+cloudflared.exe
